@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap');
 
-/* --- ±âº» ½ºÅ¸ÀÏ --- */
+/* --- ê¸°ë³¸ ìŠ¤íƒ€ì¼ --- */
 * {
     margin: 0;
     padding: 0;
@@ -21,7 +21,7 @@ body {
     padding: 2rem;
 }
 
-/* --- ¸ŞÀÎ ÆäÀÌÁö ½ºÅ¸ÀÏ --- */
+/* --- ë©”ì¸ í˜ì´ì§€ ìŠ¤íƒ€ì¼ --- */
 .header {
     text-align: center;
     padding: 4rem 0;
@@ -62,7 +62,7 @@ body {
     position: relative;
 }
 .worldview::before {
-    content: 'á¦Í£Îº';
+    content: 'ä¸–ç•Œè§€';
     position: absolute;
     top: -15px;
     left: 30px;
