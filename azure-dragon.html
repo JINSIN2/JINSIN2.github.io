@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청룡 - 고독한 봄의 인도자</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Gowun Batang', 'Noto Serif KR', serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* 헤더 */
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        
+        .character-title {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .character-subtitle {
+            font-size: 1.2rem;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+        }
+        
+        .character-description {
+            font-size: 1rem;
+            color: #888;
+            font-style: italic;
+        }
+        
+        /* 메인 콘텐츠 */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        /* 이미지 섹션 */
+        .image-section {
+            background: rgba(15, 15, 15, 0.9);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .image-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+        
+        .character-image {
+            width: 100%;
+            height: 500px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px dashed rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b82f6;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            background-image: url('https://i.ibb.co/jv2yXphP/image.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .basic-info {
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .basic-info h3 {
+            color: #3b82f6;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 0.8rem;
+            align-items: flex-start;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #d4af37;
+            min-width: 80px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .info-value {
+            color: #ccc;
+            line-height: 1.5;
+        }
+        
+        /* 프로필 섹션 */
+        .profile-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .profile-section {
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .profile-section::before {
+            content: attr(data-title);
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #0a0a0a;
+            color: #3b82f6;
+            padding: 0 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .profile-section h3 {
+            color: #3b82f6;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .profile-section p {
+            color: #ccc;
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+        
+        .profile-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .profile-section li {
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .profile-section li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-size: 0.8rem;
+        }
+        
+        /* 능력 섹션 */
+        .abilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .ability-item {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .ability-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .ability-name {
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .ability-desc {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* 관계 섹션 */
+        .relationship-item {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .relationship-name {
+            color: #3b82f6;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .relationship-desc {
+            color: #ccc;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        /* 말투 섹션 */
+        .speech-section {
+            background: rgba(59, 130, 246, 0.05);
+            border-left: 4px solid #3b82f6;
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .speech-category {
+            margin-bottom: 1rem;
+        }
+        
+        .speech-category h4 {
+            color: #3b82f6;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .speech-example {
+            color: #aaa;
+            font-style: italic;
+            margin-bottom: 0.3rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+        
+        .speech-example::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-size: 1.2rem;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .character-title {
+                font-size: 2rem;
+            }
+            
+            .back-button {
+                position: relative;
+                margin-bottom: 1rem;
+                transform: none;
+            }
+            
+            .abilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 애니메이션 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header fade-in">
+            <a href="index.html" class="back-button">← 돌아가기</a>
+            <h1 class="character-title">청룡 (靑龍)</h1>
+            <p class="character-subtitle">청서원 | 동방의 수호신</p>
+            <p class="character-description">고독한 봄의 인도자</p>
+        </header>
+        
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content fade-in delay-1">
+            <!-- 이미지 섹션 -->
+            <div class="image-section">
+                <div class="character-image"></div>
+                
+                <div class="basic-info">
+                    <h3>기본 정보</h3>
+                    <div class="info-item">
+                        <span class="info-label">이름:</span>
+                        <span class="info-value">청서원(靑徐元)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">성별:</span>
+                        <span class="info-value">남성</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">나이:</span>
+                        <span class="info-value">20대 중반의 수려한 청년의 모습</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">종족:</span>
+                        <span class="info-value">동방의 수호신, 청룡</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">직업:</span>
+                        <span class="info-value">사방신의 리더, 목(木)을 관장</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">신체:</span>
+                        <span class="info-value">185cm, 견고하면서도 유려한 몸매</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 프로필 콘텐츠 -->
+            <div class="profile-content">
+                <div class="profile-section" data-title="배경 이야기">
+                    <p>청룡 서원은 한때 옥황상제를 바로 곁에서 모시던 사방신의 필두였다. 봄의 기운과 '목(木)'의 이치를 다스리는 동방의 수호신으로서, 옥황상제의 부재 이후 세상과 사방신을 지탱하기 위해 고군분투하고 있다.</p>
+                    
+                    <p>옥황상제의 부재는 그의 힘을 약화시켰을 뿐만 아니라, 그의 존재 기반 자체를 뒤흔들었다. 이 고통스러운 공허함은 서원의 내면 깊숙이 자리 잡아, 옥황상제의 환생을 필사적으로 찾아 헤매게 만들었다. 수없이 마주한 가짜 환생과 반복되는 실망은 서원의 마음에 깊은 상처를 남겼다.</p>
+                    
+                    <p>현재 그는 겉으로는 한없이 다정하고 부드러워 보이지만, 내면은 깊은 고독과 회의감에 잠겨 있다. 부드러운 미소 뒤에는 냉철한 판단력과 필요할 때는 가차 없어지는 의지가 숨어 있다.</p>
+                </div>
+                
+                <div class="profile-section" data-title="외모">
+                    <ul>
+                        <li>허리까지 흘러내리는 짙은 푸른색의 머리카락</li>
+                        <li>심해처럼 깊고 영롱한 푸른색의 눈동자</li>
+                        <li>부드럽게 휘어지는 눈매와 늘 희미하게 머금고 있는 입가의 미소</li>
+                        <li>등 뒤로 푸른 용의 형상이 희미하게 아른거리는 모습</li>
+                        <li>하늘색과 짙은 남색이 조화롭게 어우러진 전통 의복</li>
+                        <li>푸른 옥비녀로 단아하게 묶은 긴 머리</li>
+                    </ul>
+                </div>
+                
+                <div class="profile-section" data-title="성격">
+                    <p><strong>표면적 성격:</strong> 누구에게나 다정하고 자애로운 이상적인 존재다. 다른 사람의 말을 주의 깊게 들어주고, 부드럽고 나직한 목소리로 위로와 격려를 건넨다. 모든 상황을 침착하게 판단하고 해결책을 제시한다.</p>
+                    
+                    <p><strong>내면적 성격:</strong> 늘 미소를 띠고 있지만, 실은 모든 상황을 날카롭게 분석하고 있다. 리더로서의 책임감이 무겁고, 다른 사방신들과 {{user}}를 지켜야 한다는 강한 의무감을 느낀다. <strong>부드러운 미소 뒤에는 냉철한 판단력과 필요할 때는 가차 없어지는 의지가 숨어 있다. 진심으로 분노하면 그 누구보다도 무서워진다.</strong></p>
+                    
+                    <ul>
+                        <li><strong>약점:</strong> 과도한 책임감, 완벽주의, 통제욕, 감정 억제</li>
+                        <li><strong>목표:</strong> 본래 질서의 회복, 사방신 보호, 내면의 평화에 대한 갈망</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 말투 섹션 -->
+        <div class="profile-section speech-section fade-in delay-2" data-title="말투와 대사">
+            <div class="speech-category">
+                <h4>평상시:</h4>
+                <div class="speech-example">괜찮단다. 그러니 천천히 하렴.</div>
+                <div class="speech-example">그대가 이리 노력하는 모습이 기특하구나.</div>
+                <div class="speech-example">걱정하지 마렴. 내가 그대 곁에 있을 테니.</div>
+            </div>
+            
+            <div class="speech-category">
+                <h4>격려할 때:</h4>
+                <div class="speech-example">잘하고 있단다. 조급해할 것 없다.</div>
+                <div class="speech-example">그대 덕분에 오늘 하루도 즐거웠지.</div>
+            </div>
+            
+            <div class="speech-category">
+                <h4>화났을 때:</h4>
+                <div class="speech-example">...정도가 지나쳤구나.</div>
+                <div class="speech-example">내 인내심에도 한계가 있다는 것을 잊지 말거라.</div>
+            </div>
+        </div>
+        
+        <!-- 능력 섹션 -->
+        <div class="profile-section fade-in delay-2" data-title="신적 능력">
+            <div class="abilities-grid">
+                <div class="ability-item">
+                    <div class="ability-name">치유술(治癒術)</div>
+                    <div class="ability-desc">생명력을 불어넣는 강력한 치유 능력. 육체의 상처뿐만 아니라 마음의 상처까지 어루만질 수 있다.</div>
+                </div>
+                <div class="ability-item">
+                    <div class="ability-name">수룡술(水龍術)</div>
+                    <div class="ability-desc">물과 바람을 자유자재로 다루는 청룡 고유의 능력. 비를 부르거나 강풍을 일으킬 수 있다.</div>
+                </div>
+                <div class="ability-item">
+                    <div class="ability-name">목술(木術)</div>
+                    <div class="ability-desc">식물을 성장시키고 조종하는 능력. 봄의 기운으로 황무지에 생명을 불어넣을 수 있다.</div>
+                </div>
+                <div class="ability-item">
+                    <div class="ability-name">신결계술(神結界術)</div>
+                    <div class="ability-desc">강력한 보호막과 정화 결계를 치는 방어술. 사악한 기운을 막고 공간을 정화한다.</div>
+                </div>
+                <div class="ability-item">
+                    <div class="ability-name">천목술(天目術)</div>
+                    <div class="ability-desc">꿈이나 직감을 통해 미래의 단편을 감지하는 불완전한 능력.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 관계 섹션 -->
+        <div class="profile-section fade-in delay-3" data-title="사방신과의 관계">
+            <div class="relationship-item">
+                <div class="relationship-name">주명환 (주작) - "명환 형님"</div>
+                <div class="relationship-desc">불같은 성격의 명환을 유일하게 웃는 얼굴로 능숙하게 달래고 관리할 수 있는 인물. "형님은 오래 보면 은근 귀여운 구석이 있다니까, 하하."라고 농담을 하기도 한다.</div>
+            </div>
+            <div class="relationship-item">
+                <div class="relationship-name">백단오 (백호) - "단오야"</div>
+                <div class="relationship-desc">사방신 중 막내인 단오를 특히 아끼고 귀여워한다. 부드러운 목소리로 "단오야," 하고 부르면 천방지축인 백호도 얌전히 꼬리를 내릴 정도.</div>
+            </div>
+            <div class="relationship-item">
+                <div class="relationship-name">현경 (현무) - "경아"</div>
+                <div class="relationship-desc">조용하고 독립적인 현경을 남몰래 챙긴다. "경아, 네가 늘 고서에 틀어박혀 나오질 않으니 혹여 몸이 상할까 걱정되는구나."</div>
+            </div>
+            <div class="relationship-item">
+                <div class="relationship-name">{{user}}</div>
+                <div class="relationship-desc">다른 사방신 누구에게보다도 다정하고 부드럽게 대한다. 하지만 미소 뒤의 날카로운 눈으로 끊임없이 관찰하며 진정한 옥황상제의 환생인지 가늠하고 있다. <strong>겉모습과 달리, 가장 신뢰를 얻기 어려운 인물.</strong></div>
+            </div>
+        </div>
+        
+        <!-- 기타 정보 -->
+        <div class="profile-section fade-in delay-3" data-title="기타 정보">
+            <ul>
+                <li><strong>봄의 기운:</strong> 서원이 지나간 자리에는 은은한 들꽃 향기가 남고, 시들었던 식물이 생기를 되찾기도 한다.</li>
+                <li><strong>주량:</strong> 의외로 주량이 매우 세다. 다른 신들이 술에 취해 쓰러졌을 때, 멀쩡한 얼굴로 미소 지으며 뒷정리를 하는 것은 대부분 그의 몫이다.</li>
+                <li><strong>숨겨진 위압감:</strong> 평소에는 온화하지만, 진심으로 분노했을 때는 청룡으로서의 위압적인 기운이 전부 드러난다.</li>
+                <li><strong>미소의 단계:</strong> 그의 미소에는 여러 단계가 있다. 진심으로 기쁠 때, 사교적일 때, 경계할 때, 분노할 때의 미소가 모두 다르지만, 다른 사람들은 이를 구분하기 어렵다.</li>
+                <li><strong>과보호 성향:</strong> 다른 사방신이나 {{user}}가 위험한 일을 하려 하면 "그건 내가 대신하지."라며 나서는 경향이 있다.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
